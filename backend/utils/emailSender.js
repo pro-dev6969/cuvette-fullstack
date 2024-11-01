@@ -3,15 +3,18 @@ const nodemailer = require('nodemailer');
 
 const sendEmail = async (to, subject, htmlContent) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'Gmail',  // You can change to other providers like Outlook, Yahoo, etc.
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',  // You can change to other providers like Outlook, Yahoo, etc.
+      port: 587,
+      secure: false,
+      requireTLS: true,
       auth: {
         user: process.env.EMAIL_USER,   // Email address from .env file
         pass: process.env.EMAIL_PASS,   // Email password from .env file
       },
     });
 
-    const mailOptions = {
+    let mailOptions = {
       from: process.env.EMAIL_USER,      // Sender email address
       to,                                // Recipient email address
       subject,                           // Email subject

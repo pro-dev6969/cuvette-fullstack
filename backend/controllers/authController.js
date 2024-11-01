@@ -113,7 +113,7 @@ const deleteCompany = async (req, res) => {
     }
 
     // Optional: Delete all jobs associated with this company
-    await Job.deleteMany({ company: companyId });
+    // await Job.deleteMany({ company: companyId });
 
     // Delete the company
     await Company.findByIdAndDelete(companyId);
